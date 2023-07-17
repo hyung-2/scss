@@ -1,0 +1,209 @@
+// $orange: orange; //변수선언
+
+// h1{
+//   background-color: $orange;
+// }
+//------------------------------------------------------------------------------------
+// .section {
+//   width: 100%;
+
+//   .list{ //자식태그(중첩 Nesting)
+//     padding: 20px;
+
+//     li{
+//       float: left;
+//       border: 1px solid #eee;
+//       list-style: none;
+//     }
+//   }
+// }
+//------------------------------------------------------------------------------------
+// .btn {
+//   position: absolute;
+//   top: 50%; left: 50%;
+//   transform: translate(-50%,-50%);
+
+//   &.active{ //&는 .btn을 가리킴(현재 선택자) html class에 btn, active둘다 주거나 &:active로 사용
+//     color: red;
+//   }
+// }
+
+// .list{
+//   li{
+//     border: 3px solid #eee;
+//     &:last-child{
+//       margin-right: 0;
+
+//     }
+//   }
+// }
+//------------------------------------------------------------------------------------
+// .fs{
+//   &-samll{
+//     font-size: 1rem;
+//   }
+//   &-medium{
+//     font-size: 2rem;
+//   }
+//   &-large{
+//     font-size: 3rem;
+//   }
+// }
+//------------------------------------------------------------------------------------
+// $color-primary: #e96900;
+// $url-images: "/assets/images/";
+// $w: 200px;
+// $mb: 1rem;
+
+// .box {
+//   width: $w;
+//   background-color: $color-primary;
+//   margin-bottom: $mb - 0.5rem;
+// }
+// .container{
+//   width: $w * 5;
+//   background: $color-primary;
+//   margin-bottom: $mb - 0.3rem;
+// }
+// .footer{
+//   width: $w * 3;
+//   background-color: $color-primary;
+//   margin-bottom: $mb;
+// }
+//------------------------------------------------------------------------------------
+// @mixin large-text { // @mixin : js의 function같은것. @mixin 이름 으로 정의. 
+//   /* font-size:  22px;
+//      font-weight: bold;
+//      font-family: sans-serif; 를 아래처럼 사용가능 */
+//   font: {
+//     size: 22px;
+//     weight:bold;
+//     family:sans-serif;
+//   }
+//   color: orange;
+//   &::after {
+//     content: "!!";
+//   }
+//   span.icon{
+//     background: url(./bootstrap/images/pet4.jpg);
+//     width: 50px; height: 50px;
+//     display: inline-block;
+//     object-fit: cover;
+//     object-position: center;
+//   }
+// }
+
+// h1{
+//   @include large-text; //@include : 함수호출 처럼 mixin호출
+// }
+// div{
+//   @include large-text
+// }
+//------------------------------------------------------------------------------------
+/* Mixin : 지정한 스타일(Style)을 반환
+   함수 : 계산된 특정 값을 @return 지시어를 통해 반환 */
+
+// $max-width: 980px;
+
+// //부트스트랩 그리드 시스템처럼 12개의 컬럼 중에서 특정 비율만큼 가져감
+// @function columns ($number:1, $columns:12){
+//   @return $max-width * ($number / $columns);
+// }
+
+// .box_group {
+//   width: $max-width;
+
+//   .box1{
+//     width: columns(); //columns로 함수 호출
+//   }
+//   .box2{
+//     width: columns(8);
+//   }
+//   .box3{
+//     width: columns(3);
+//   }
+// }
+//------------------------------------------------------------------------------------
+//if문 - if(조건, true, false) /js의 삼항연산자와 비슷
+
+// $width-1:555px;
+// $width-2:700px;
+// $width-3:250px;
+// $width-4:70px;
+// $limit:300px;
+
+// $color-1: apple;
+// $color-2: banana;
+// $color-3: mango;
+// $color-4: strawberry;
+
+// @mixin slelctColor($fruit){
+//   @if  $fruit == apple {
+//     background-color: green;
+//   }@else if $fruit == banana {
+//     background-color: yellow;
+//   }@else if $fruit == mango {
+//     background-color: orange;
+//   }@else{
+//     background-color: red;
+//   }
+// }
+// .box{
+//   &-1{
+//     width: if($width-1 > $limit, $width-1, 30px ); 
+//     @include slelctColor($color-1);
+//   }
+//   &-2{
+//     width: if($width-2 > $limit, $width-2, 30px );
+//     @include slelctColor($color-2);
+//   }
+//   &-3{
+//     width: if($width-3 > $limit, $width-3, 30px );
+//     @include slelctColor($color-3);
+//   }
+//   &-4{
+//     width: if($width-4 > $limit, $width-4, 30px );
+//     @include slelctColor($color-4);
+//   }
+// }
+//------------------------------------------------------------------------------------
+/* from a through b : a부터 b포함하여 반복
+   from a to b : a부터 b직전까지 반복 */
+
+// $mb: .2rem;
+
+// @for $i from 1 through 3 {
+//   .through:nth-child(#{$i}){
+//     width: 20px * $i; 
+//     background-color: aquamarine;
+//     margin-bottom: $mb;
+//   }
+// }
+
+// @for $i from 1 to 3 {
+//   .to:nth-child(#{$i}){
+//     width: 20px * $i;
+//     background-color: brown;
+//     margin-bottom: $mb;
+//   }
+// }
+//------------------------------------------------------------------------------------
+
+/* list : 배열 / map : 객체(key:value의 형태) 데이터 반복할때 @each 사용 (for~in for~of문과 유사) */
+//list
+@each $animal in puma, sea-slug, egret, salamander { // puma~salamander 는 list가 된다
+  .#{$animal}-icon{
+    background-image: url(./images/#{$animal}.jpg);
+    width:200px; height: 300px;
+    object-fit: cover;
+    object-position: center;
+    
+  }
+}
+//map 
+@each $key, $value in (h1: 2rem, h2:1.5rem, h3:1.2rem){ //(map)
+  #{$key}{
+    font-size: $value;
+  }
+}
+//------------------------------------------------------------------------------------

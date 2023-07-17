@@ -1,0 +1,57 @@
+@charset "UTF-8";
+/* Mixin : 지정한 스타일(Style)을 반환
+   함수 : 계산된 특정 값을 @return 지시어를 통해 반환 */
+/* from a through b : a부터 b포함하여 반복
+   from a to b : a부터 b직전까지 반복 */
+/* list : 배열 / map : 객체(key:value의 형태) 데이터 반복할때 @each 사용 (for~in for~of문과 유사) */
+.puma-icon {
+  background-image: url(./images/puma.jpg);
+  width: 200px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.sea-slug-icon {
+  background-image: url(./images/sea-slug.jpg);
+  width: 200px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.egret-icon {
+  background-image: url(./images/egret.jpg);
+  width: 200px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.salamander-icon {
+  background-image: url(./images/salamander.jpg);
+  width: 200px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}/*# sourceMappingURL=0717.css.map */

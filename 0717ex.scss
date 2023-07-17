@@ -1,0 +1,203 @@
+// 1번문제
+
+.Button {
+  all: unset;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-left: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover{
+    opacity: .7;
+  }
+}
+
+$height : 10px;
+$font-size : 1rem;
+
+@function heightsize ($size){
+  @return $height * $size
+};
+
+@mixin paddingsize($size){
+    padding-left: $size;
+    padding-right: $size;
+  }
+
+.large {
+  height: heightsize(7);
+  @include paddingsize(15px);
+  font-size: $font-size + .2rem;
+}
+.medium{
+  height : heightsize(5);
+  @include paddingsize(10px);
+  font-size: $font-size;
+}
+.small{
+  height: heightsize(3);
+  @include paddingsize(5px);
+  font-size: $font-size - .2rem;
+}
+
+.blue{
+  background-color: blue;
+  &:hover{
+    background-color: skyblue;
+  }
+}
+
+.tomato{
+  background-color: tomato;
+  &:hover{
+    background-color: lightsalmon;
+  }
+}
+
+.grey{
+  background-color: grey;
+  &:hover {
+    background-color: lightgray;
+  }
+}
+
+.fullWidht{
+  width: 100%;
+  margin: 10px 0px;
+}
+
+// 2번문제
+$border: 1px solid;
+
+.Modal {
+  width: 500px;
+  margin: 100px auto;
+  border: $border tan;
+  padding: 10px;
+  text-align: center;
+}
+
+.open {
+  display: block;
+}
+.close{
+  display: none;
+}
+
+.header.body.footer{
+  padding: 5px;
+}
+.header{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.body{
+  font-size: .9rem;
+  margin: 20px;
+   input {
+    width: 60%; height: 30px;
+    border: $border lightgray;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+}
+.footer{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+// 3번문제
+$shadow : 1px 1px 5px 5px;
+$bgcolor:rgba(0, 0, 0, .8);
+$rem: 1rem;
+$fontbold: 900;
+
+@mixin flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin fontweight ($weight){
+  @if $weight == $fontbold {
+    font-weight: 900;
+    text-align: center;
+  }@else {
+    font-weight: 400;
+    text-align: center;
+  }
+}
+
+@function remsize($size){
+  @return $rem + ($size)
+}
+
+.header{
+  width: 100%; height: 70px;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  box-shadow: $shadow darkgray;
+  background: rgba(255, 255, 255, .7);
+  backdrop-filter: blur(20px);
+  z-index: 1;
+
+  @include flex;
+}
+.sort-btns{
+  all: unset;
+  width: 100px; height: 50px;
+  background-color: $bgcolor;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  font-size: remsize(0);
+  @include fontweight(900);
+  margin-left: 10px;
+  &:hover{
+    opacity: 0.8;
+  }
+}
+
+.root{
+  width: 60%;
+  margin: 100px auto;
+  flex-wrap: wrap;
+  @include flex;
+}
+
+.product{
+  flex: 200px; height: 500px;
+  color: white;
+  background: $bgcolor;
+  margin: 10px;
+  overflow: hidden;
+
+  &-img{
+    width: 100%; height: 180px;
+    overflow: hidden;
+    padding-bottom: remsize(0);
+    
+    img{
+      width: 100%; height: 100%;
+    }
+  }
+  &-name{
+    @include fontweight (900);
+    font-size: remsize(.1rem);
+  }
+  &-description{
+    @include fontweight (400);
+    font-size: remsize(-0.1rem);
+    margin-top: 15px;
+  }
+  &-type{
+    text-align: center;
+    margin-top: remsize(1rem);
+  }
+}
+
