@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입 페이지</title>
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+  <link rel="stylesheet" href="0718ex2.css">
+</head>
+<body>
+  <div class="form-container">
+    <header>
+      <a href="#">
+        <img src="http://tfgms.com/sandbox/dailyui/logo-1.png" alt="Authentic Collection">
+      </a>
+    </header>
+    <h1 class="text-center">Register</h1>
+    <form action="">
+      <div class="line remove-margin">
+        <div class="horizontal-align left-padding">
+          <label for="first-name">FIRST NAME</label>
+          <input type="text" id="first-name" name="first-name">
+        </div>
+        <div class="horizontal-align left-padding ">
+          <label for="last-name">LAST NAME</label>
+          <input type="text" id="last-name" name="last-name">
+        </div>
+      </div>
+      <div class="line left-padding">
+        <label for="email">EMAIL</label>
+        <input type="email" id="email" name="email">
+      </div>
+      <div class="line left-padding">
+        <label for="password">PASSWORD</label>
+        <input type="password" id="password" name="password">
+      </div>
+      <div class="checkbox-container text-center">
+        <input type="checkbox" id="signup" name="signup" class="hidden">
+        <label for="signup">
+            <span class="material-icons-outlined pointer">
+                check_box_outline_blank
+            </span>
+            <span class="material-icons-outlined hidden pointer">
+                check_box
+            </span>
+        </label>
+        <label for="signup" class="pointer">Sign me up for the weekly newsletter.</label>
+      </div>
+      <div class="text-center">
+        <button type="submit">Sign Me Up</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+@charset "UTF-8";
+/* list - 특정값을 추가하는 함수*/
+/*map -Map 내장 함수는 기존 Map 데이터를 갱신하지 않고 새 Map 데이터를 반환 */
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.background .harry-potter {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  background-color: skyblue;
+}
+.background .harry-potter::after {
+  content: "harry-potter";
+  color: white;
+  font-size: 20px;
+}
+.background .spiderman {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  background-color: skyblue;
+}
+.background .spiderman::after {
+  content: "spiderman";
+  color: white;
+  font-size: 20px;
+}
+.background .ironman {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  background-color: skyblue;
+}
+.background .ironman::after {
+  content: "ironman";
+  color: white;
+  font-size: 20px;
+}
+.background .Harry {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  background-color: firebrick;
+}
+.background .Harry::after {
+  content: "Harry";
+  color: white;
+  font-size: 20px;
+}
+.background .Spider {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  background-color: firebrick;
+}
+.background .Spider::after {
+  content: "Spider";
+  color: white;
+  font-size: 20px;
+}
+.background .Iron {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  background-color: firebrick;
+}
+.background .Iron::after {
+  content: "Iron";
+  color: white;
+  font-size: 20px;
+}/*# sourceMappingURL=0718.css.map */

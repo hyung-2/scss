@@ -1,0 +1,399 @@
+@use "sass:list";
+
+$brand-color:#cc0000;
+$white-color:#fff;
+$font-size : 1rem;
+
+
+
+@mixin wh ($w , $h){
+  width: $w;  height: $h;
+}
+@mixin grid ($gtr, $gtc, $j, $a){
+  grid-template-rows: $gtr;
+  grid-template-columns: $gtc;
+  justify-items: $j;
+  align-items: $a;
+}
+@mixin flex ($j, $a){
+  justify-content: $j;
+  align-items: $a;
+}
+@mixin secColor($r, $g, $b){
+  color : rgb($r, $g, $b)
+}
+@mixin secBgColor($r, $g, $b){
+  background-color : rgb($r, $g, $b)
+}
+@mixin marginTBLR ($t, $b, $l ,$r){
+  margin-top: $t;
+  margin-bottom: $b;
+  margin-left: $l;
+  margin-right: $r;
+}
+@mixin pos($pos, $t, $b ,$l, $r){
+  position: $pos;
+  top: $t; bottom: $b;
+  left: $l; right: $r;
+}
+@mixin boxS ($x, $y, $o, $c) {
+  box-shadow: $x $y $o $c;
+}
+@mixin ani ($fade, $sec, $ease, $sec2, $dir){
+  animation: $fade $sec $ease $sec2 $dir;
+}
+@mixin self (){
+  align-self: start;
+  justify-self: start;
+}
+*{
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+}
+
+@supports (scroll-snap-align: start){
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+  }
+}
+.hide-scrollbar{
+  -ms-overflow-style: none;
+}
+
+h1, p {margin-bottom: 1rem;}
+h1 {font-size:  $font-size * 3.5;}
+p {font-size:  $font-size * 1.5;}
+a {text-decoration: none;}
+ul {list-style: none;}
+img{
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  @include wh(100%, 100%)
+}
+button{
+  border: none; outline: none;
+  border-radius: 1.5rem;
+  min-width: 6rem; height: 3rem;
+  font-size: $font-size;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+.main-img{
+  @include wh(100%, 100vh);
+}
+.main-text{
+  text-align: center;
+  padding: 2rem;
+}
+figure{
+  overflow: hidden;
+  cursor: pointer;
+}
+
+section {
+  @include wh(100%, 100vh);
+  scroll-snap-align: start;
+  overflow: hidden;
+
+  &.second, &.third, &.fourth{
+    display: grid;
+    @include grid(null, #{repeat(2, 1fr)}, center, center);
+  }
+
+  &.first {
+    background-color: $white-color;
+    color: #000;
+    display: grid;
+    @include grid(80px 1fr 60px, null, null, null);
+
+    header{
+      display:grid;
+      @include grid(null, 1fr 300px 200px, end, center);
+      width: 100%;
+
+      >a{
+        display: flex;
+        @include flex(null, center);
+        padding-left: 1.5rem;
+        color: $brand-color;
+        font-size: $font-size + 0.2rem;
+        font-weight: bold;
+
+        i{
+          font-size: $font-size + 1.5rem;
+        }
+      }
+      nav{
+        ul{
+          display: flex;
+          @include flex(space-evenly, center);
+          @include wh(null, 100%);
+
+          li{
+            a{
+              color: #111111;
+              font-weight: bold;
+              &:hover{
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+      .gnb-btns{
+        text-align: right;
+        padding-right: 1rem;
+
+        button:nth-child(1){
+          background-color: $brand-color;
+          min-width: initial;
+          height: 2.5rem;
+          @include wh(4rem, 2.5rem);
+          color : $white-color
+        }
+      }
+    }
+    main{
+      display: flex;
+
+      .banner-img-container{
+        @include wh(98%, null);
+        display:grid;
+        @include grid(repeat(2, 350px), repeat(7, 236px), center, null);
+        grid-gap: 20px;
+        overflow: hidden;
+        @include pos(relative, null, null, null, null);
+        @include marginTBLR (auto, null, auto, auto);
+
+        &::after{
+          content: '';
+          @include pos(absolute, null, 0, 0, null);
+          @include wh(100%, 100%);
+          @include boxS(0, -50px, 100px, $white-color);
+          box-shadow: inset;
+        }
+        figure{
+          border-radius: 1rem;
+
+          $sec : 1s, 1.3s, 1.6s, 1.9s, 2.2s, 2.5s, 2.8s;
+          $toppos : 200px, 350px, 425px, 585px, 425px, 350px ,200px;
+
+          @each $num in $sec {
+            $index : list.index($sec, $num);
+            $postop : list.nth($toppos,$index);               
+            &:nth-child(7n+#{$index}){
+              @include pos(relative, $postop, null, null, null);
+              @include ani(fadeOut, .3s, ease-in-out, $num, forwards);
+            }
+          }
+        }
+      }
+    }
+    footer{
+      @include boxS(0, -5rem, 5rem, $white-color);
+      @include secBgColor(255, 253, 146);
+      display: flex;
+      @include flex(center, null);
+      @include pos(relative, null, null, null, null);
+
+      a{
+        color:#111111;
+        font-weight: bold;
+        display: flex;
+        @include flex(null, center);
+
+        i{
+          font-size: $font-size * 1.5;
+        }
+      }
+      span{
+        @include wh(50px, 50px);
+        @include pos(absolute, 0px, null, 50%, null);
+        transform: translate(-50%, 0);
+        line-height: 50px;
+        border-radius: 50%;
+        z-index: 3;
+        font-size: $font-size * 3;
+        @include secBgColor(0, 107, 108);
+        color: $white-color;
+        text-align: center;
+        @include ani(vibrate, 2s, infinite, null, linear);
+      }
+    }
+  }
+  &.second{
+    @include secBgColor(255, 253, 146);
+    
+    .main-text{
+      @include secColor(195, 25, 82);
+      @include wh(50%, null);
+      min-width: 500px;
+
+      button{
+        @include secBgColor(195, 25, 82);
+        @include secColor(255, 253, 146);
+      }
+    }
+    .main-img{
+      display: grid;
+      @include grid(repeat(30, 1fr), repeat(30, 1fr), null, null);
+      max-width: 700px;
+      @include self();
+
+      figure{
+        $gridc : 16, 10, 24, 25 ;
+        $gridc2 : 29, 19, 31, 31 ;
+        $gridr : 9, 11, 7, 18;
+        $gridr2 : 23, 20, 13, 25;
+        $br : (4rem, 3rem, 2.5rem, 2.5rem);
+        @each $num in $gridc {
+          $index : list.index($gridc, $num);
+          $gridcol2:list.nth($gridc2, $index);
+          $gridrow : list.nth($gridr, $index);
+          $gridrow2 : list.nth($gridr2, $index);
+          $gridb : list.nth($br, $index);
+        &:nth-child(#{$index}){
+          grid-column: #{$num} / #{$gridcol2};
+          grid-row: #{$gridrow} / #{$gridrow2};
+          border-radius: $gridb;
+        }
+      }
+      &:nth-child(1){
+        z-index: 1;
+      }
+      }
+    }
+  }
+  &.third{
+    @include secBgColor(218, 255, 246);
+    
+    .main-text{
+      @include secColor(0, 107, 108);
+      max-width: 1000px;
+
+      button{
+        @include secBgColor(0, 107, 108);
+        @include secColor(218, 255, 246);
+      }
+    }
+    .main-img{
+      display: grid;
+      @include grid(repeat(30, 1fr), repeat(30, 1fr), null, null);
+      max-width:700px;
+      @include self();
+
+      figure{
+        $gridc : 1, 19, 18, 6, 17 ;
+        $gridc2 : 17, 29, 26, 15, 27 ;
+        $gridr : 7, 7, 15, 21, 22;
+        $gridr2 : 20, 14, 21, 28, 29;
+        $br : (4rem, 3rem, 2.5rem, 3rem, 3rem);
+        $fs : ($font-size * 3.5, $font-size * 1.5, null, $font-size*1.5, $font-size*1.5);
+        @each $num in $gridc {
+          $index : list.index($gridc, $num);
+          $gridcol2:list.nth($gridc2, $index);
+          $gridrow : list.nth($gridr, $index);
+          $gridrow2 : list.nth($gridr2, $index);
+          $gridb : list.nth($br, $index);
+          $gridfs : list.nth($fs, $index);
+        &:nth-child(#{$index}){
+          grid-column: #{$num} / #{$gridcol2};
+          grid-row: #{$gridrow} / #{$gridrow2};
+          border-radius: $gridb;
+          font-size: $gridfs;
+          }
+        }
+        @include pos(relative, null, null, null, null);
+        figcaption{
+          @include pos(absolute, null, 2rem, 2rem, null);
+          color: $white-color;
+        }
+
+      }
+    }
+  }
+  &.fourth{
+    @include secBgColor(255, 226, 235);
+    
+    .main-img{
+      @include pos(relative, null, null, null, null);
+
+      figure{
+        &:nth-child(2){
+          @include pos(absolute, null, 96px, 84px, null);
+          @include wh(215px, null);
+          img {
+            height: 100%;
+          }
+        }
+        &:nth-child(3){
+          @include pos(absolute, null, 101px, 47px, null);
+          @include wh(96px, null);
+          img{
+            height: 100%;
+          }
+        }
+        figcaption{
+          color: $white-color;
+          font-weight: 600;
+          text-align: right;
+          padding-right: 2.5rem;
+          padding-top: .5rem;
+        }
+      }
+      img{
+        &:nth-child(1){
+          max-width: 100%;
+          @include wh(null, 100vh);
+        }
+      }
+    }
+    .main-text{
+      @include secColor(195, 47, 0);
+      @include wh(50%, null);
+      min-width: 500px;
+
+      button{
+        @include secBgColor(195, 47, 0);
+        @include secColor(255, 226, 235);
+      }
+    }
+  }
+  
+  &:nth-child(5){
+    background-color: $white-color;
+    color: #000;
+  }
+}
+
+
+@mixin media ($mx) {
+  @media screen and (max-width : $mx){}
+}
+
+@include media(1024px);
+@include media(768px);
+@include media(480px);
+
+@mixin fadeOp($ty){
+  opacity: 1;
+  transform: translateY($ty);
+}
+@mixin fadeNoOp(){
+  opacity: 0;
+  transform: translateY($ty);
+}
+
+@keyframes fadeOut{
+  from{
+    @include fadeOp(0);
+  }
+  to{
+    @include fadeNoOp(-30px);
+  }
+}
+

@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url("http://tfgms.com/sandbox/dailyui/bg-1.jpg") center no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  font-size: 18px;
+  font-family: Raleway, sans-serif;
+  position: relative;
+}
+body .form-container {
+  max-width: 480px;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.25);
+  z-index: 1;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #333;
+}
+body .form-container header img {
+  max-width: 240px;
+  margin: 0 auto;
+  display: block;
+}
+body .form-container h1 {
+  margin: 2rem 0;
+  font-size: 3.5rem;
+  font-family: Cookie, cursive;
+  font-weight: lighter;
+}
+body .form-container button {
+  background-color: rgba(255, 255, 255, 0.25);
+  font-size: 1.3rem;
+  padding: 0.5em 0.5em;
+  border: 1px solid #fff;
+  line-height: 1rem;
+  transition: all 0.25s;
+}
+body .form-container button:hover {
+  background: #333;
+  color: #fff;
+  outline: none;
+}
+body .form-container .text-center {
+  text-align: center;
+}
+body .form-container form .line {
+  border-bottom: 1px solid #333;
+  margin-bottom: 0.5rem;
+}
+body .form-container form .line .left-padding {
+  padding-left: 0.5rem;
+}
+body .form-container form .line .horizontal-align {
+  display: inline-block;
+  width: 50%;
+}
+body .form-container form .line .horizontal-align:nth-of-type(2) {
+  border-left: 1px solid #333;
+}
+body .form-container form .line .horizontal-align label, body .form-container form .line .horizontal-align input {
+  display: block;
+  width: 100%;
+}
+body .form-container form .remove-margin {
+  font-size: 0;
+}
+body .form-container form label {
+  font-size: 0.8rem;
+}
+body .form-container form input {
+  outline: none;
+  border: none;
+  background: transparent;
+  caret-color: #333;
+  font-size: 1.5rem;
+  font-family: Noto Sans KR, sans-serif;
+  height: 2rem;
+  line-height: 2rem;
+}
+body .form-container form .hidden {
+  display: none;
+}
+body .form-container form .checkbox-container {
+  margin-top: 1rem;
+  padding-bottom: 0.8rem;
+}
+body .form-container form .checkbox-container .pointer {
+  cursor: pointer;
+}
+body .form-container form .checkbox-container .material-icons-outlined {
+  vertical-align: middle;
+}
+
+input[type=checkbox]:checked ~ label > span.hidden {
+  display: inline-block;
+}
+
+input[type=checkbox]:checked ~ label > span:not(.hidden) {
+  display: none;
+}/*# sourceMappingURL=0718ex2.css.map */

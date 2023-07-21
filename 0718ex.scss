@@ -1,0 +1,159 @@
+$primary-color: #e73d0c;
+$text-color:#fff;
+$text-offset:500px;
+$font-size:1rem;
+
+@mixin ani($fade){
+  animation: 1.5s $fade;
+}
+
+@mixin fontstyle($fw, $ls){
+  font-weight: $fw;
+  letter-spacing: $ls;
+}
+
+@mixin btnStyle($bg, $color, $border){
+  background: $bg;
+  color: $color;
+  border:  $border;
+}
+@mixin mwh($w, $h, $mxw, $mxh, $mnw, $mnh){
+  width: $w;
+  height: $h;
+  max-width: $mxw;
+  max-height: $mxh;
+  min-width: $mnw;
+  min-height: $mnh;
+}
+body{
+  margin:0; padding: 0;
+  box-sizing: border-box;
+}
+
+section{
+  @include mwh(100%, 100vh, null, null, null, null);
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), 
+                    url(https://assets.nicepagecdn.com/d2cc3eaa/3955079/images/34.jpg);
+  background-size: cover;
+  background-position: center center;
+  overflow: auto;
+
+  .position-center{
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+
+    .text-center{
+      text-align: center;
+    }
+  }
+
+  .container{
+    @include mwh(100%, null, null, 100%, 500px, null);
+    color: $text-color;
+    overflow: auto;
+    
+    .title{
+      h1 {
+        font-size: $font-size * 3;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        margin: 60px auto 0;
+        @include ani(fadein-to-right) ;
+      }
+      p {
+        font-size: $font-size * 1.25;
+        @include mwh(60%, null, 760px, null, null, null);
+        display: inline-block;
+        @include ani(fadein-to-left);
+      }
+    }
+    .actions{
+      button{
+        text-transform: uppercase;
+        cursor: pointer;
+        @include fontstyle(700, .1rem);
+        border-radius: 20px;
+        padding: 14px 40px 15px;
+        margin: .5rem;
+        display: inline-block;
+
+        &:nth-child(1){
+          @include btnStyle($text-color, #333, 2px solid $text-color);
+          @include ani(fadein-to-right);
+
+          &:hover{
+            @include btnStyle($primary-color, $text-color, 2px solid $primary-color);
+          }
+        }
+        &:nth-child(2){
+          @include btnStyle(transparent, $text-color, 2px solid $text-color);
+          @include ani(fadein-to-left);
+
+          &:hover{
+            @include btnStyle($primary-color, null, 2px solid $primary-color)
+          }
+        }
+      }
+    }
+    p{
+      @include fontstyle(700,null);
+      margin-bottom: 3rem;
+
+      a{
+        color: $text-color;
+      }
+    }
+    .foods{
+      figure{
+        display: inline-block;
+        background-color: $primary-color;
+        padding: 60px 50px; margin: 1rem;
+        min-width: 150px;
+        line-height: 2rem;
+        @include fontstyle(bold, .2rem);
+        @include ani(fade-to-top);
+
+        img{
+          width: 3rem;
+        }
+      }
+    }
+  }
+}
+
+@mixin fadeX($sc, $tl){
+  transform: scale($sc);
+  transform: translateX($tl);
+}
+
+@mixin fadeY($op, $h ,$mw, $sc, $tl){
+  opacity: $op;
+  height: $h;
+  min-width: $mw;
+  transform: scale($sc);
+  transform: translateY($tl);
+}
+
+@mixin leftright($leri,$tlx){
+  @keyframes fadein-to-#{$leri}{
+    from{
+      @include fadeX(0,$tlx);
+    }
+    to{
+      @include fadeX(1, 0)
+    }
+  }
+}
+
+@include leftright(right, calc(-1 * $text-offset));
+@include leftright(left, $text-offset);
+
+
+@keyframes fade-to-top {
+  from{
+    @include fadeY(0, 0, 0px, 0, $text-offset);
+  }
+  to{
+    @include fadeY(1, 100%, 150px, 1, 0);
+  }
+}
